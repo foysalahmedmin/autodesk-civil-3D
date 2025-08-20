@@ -117,15 +117,7 @@ const TabsRoot = ({
 // List Component
 const TabsList = ({ className, children, ...props }: TabsListProps) => {
   return (
-    <ul
-      role="tablist"
-      className={cn(
-        "scrollbar-hide flex items-center justify-center gap-1 overflow-x-auto",
-        "border-b border-gray-200 dark:border-gray-700",
-        className,
-      )}
-      {...props}
-    >
+    <ul role="tablist" className={cn("", className)} {...props}>
       {children}
     </ul>
   );
@@ -168,17 +160,6 @@ const TabsTrigger = ({
         }
       }}
       className={cn(
-        // Base styles
-        "relative cursor-pointer px-4 py-2 text-sm font-medium",
-        "transition-all duration-200 ease-in-out",
-        "hover:text-primary",
-        "before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full",
-        "before:bg-primary before:scale-x-0 before:transform before:transition-transform before:duration-200",
-
-        // Inactive state
-        "text-muted-foreground dark:text-muted-foreground",
-
-        // Active state
         isActive && ["text-primary", "before:scale-x-100", activeClassName],
 
         // Disabled state
