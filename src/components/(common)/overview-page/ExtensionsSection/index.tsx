@@ -59,7 +59,7 @@ const ExtensionsSection = () => {
                 <img
                   src={extension.imageUrl}
                   alt={extension.title}
-                  className="h-60 w-full object-cover"
+                  className="aspect-video w-full object-cover"
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
                   <div className="bg-primary/90 rounded-full p-3">

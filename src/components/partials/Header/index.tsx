@@ -53,7 +53,7 @@ const Header = () => {
 
   return (
     <div>
-      <header className="dark bg-background text-foreground flex h-16 items-center border-b px-6">
+      <header className="dark bg-background text-foreground flex h-16 items-center border-b">
         <div className="container mx-auto flex h-full items-center justify-between">
           <div className="flex items-center gap-2">
             <button onClick={() => setIsOpen(true)} className="lg:hidden">
@@ -68,7 +68,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
               <Earth />
-              <span className="leading-0">US</span>
+              <span className="hidden leading-0 lg:block">US</span>
             </div>
             <div className="bg-muted-foreground w-[1px] self-stretch" />
             <a
@@ -76,7 +76,7 @@ const Header = () => {
               className="flex items-center gap-1"
             >
               <UserCircle />
-              <span className="leading-0">Sign in</span>
+              <span className="hidden leading-0 lg:block">Sign in</span>
             </a>
           </div>
         </div>
@@ -98,29 +98,36 @@ const Header = () => {
         </div>
       </nav>
       <div className="lg:hidden">
-        <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
-          <Drawer.Header className="h-20 p-0">
-            <div className="flex h-full items-center justify-between px-6">
-              <div>
-                <Logo />
+        <Drawer
+          className="dark text-card-foreground bg-card"
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        >
+          <Drawer.Backdrop />
+          <Drawer.Content>
+            <Drawer.Header className="h-16 p-0">
+              <div className="flex h-full w-full items-center justify-between px-6">
+                <div>
+                  <Logo />
+                </div>
+                <Drawer.Close size={"sm"} />
               </div>
-              <Drawer.Close />
-            </div>
-          </Drawer.Header>
-          <Drawer.Body className="p-0">
-            <ul className="flex flex-col">
-              {items.map((item) => (
-                <li key={item.name}>
-                  <a
-                    className="hover:bg-muted/25 block w-full px-6 py-4"
-                    href={item.href}
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </Drawer.Body>
+            </Drawer.Header>
+            <Drawer.Body className="p-0">
+              <ul className="flex flex-col py-4">
+                {items.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      className="hover:bg-muted/25 block w-full px-6 py-2"
+                      href={item.href}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Drawer.Body>
+          </Drawer.Content>
         </Drawer>
       </div>
     </div>

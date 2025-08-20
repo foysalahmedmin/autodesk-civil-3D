@@ -162,7 +162,7 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
           <img className="h-10" src="/civil-logo.png" alt="" />
           Civil 3D
         </div>
-        <h3 className="text-3xl font-black">
+        <h3 className="text-2xl font-black md:text-3xl">
           Autodesk Civil 3D: Comprehensive detailed design and documentation
           <br />
           software for civil infrastructure
@@ -268,10 +268,10 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
           Have questions about selecting or buying software?
         </strong>
       </div>
-      <div className="bg-muted/50 space-y-6 overflow-hidden rounded-xl border py-10 pb-0 backdrop-blur-xl">
-        <div className="px-10">
+      <div className="bg-muted/50 space-y-6 overflow-hidden rounded-xl border py-6 pb-0 backdrop-blur-xl md:py-10">
+        <div className="px-6 md:px-10">
           <div className="space-y-6">
-            <h3 className="text-3xl font-black">Plans Civil 3D</h3>
+            <h3 className="text-xl font-black md:text-3xl">Plans Civil 3D</h3>
             <div>
               <Tabs
                 value={tab}
@@ -321,9 +321,9 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
                 <hr />
                 <Tabs.Content>
                   <Tabs.Item value={0}>
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
                       <div className="flex items-center gap-4">
-                        <p>Select Term</p>
+                        <p className="hidden md:block">Select Term</p>
                         <label className="flex cursor-pointer items-center gap-2">
                           <input
                             className="accent-accent size-5"
@@ -377,7 +377,7 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
                     </div>
                   </Tabs.Item>
                   <Tabs.Item value={1}>
-                    <div className="flex items-center justify-end">
+                    <div className="flex items-center justify-center md:justify-end">
                       <h4 className="flex flex-wrap items-end gap-1 leading-none">
                         <span className="text-xl leading-none font-black">
                           $360
@@ -387,7 +387,7 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
                     </div>
                   </Tabs.Item>
                   <Tabs.Item value={2}>
-                    <div className="flex items-center justify-end">
+                    <div className="flex items-center justify-center md:justify-end">
                       <h4 className="flex flex-wrap items-end gap-1 leading-none">
                         <span className="text-xl leading-none font-black">
                           $300
@@ -401,7 +401,7 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
             </div>
           </div>
         </div>
-        <div className="bg-muted/50 border-t px-10">
+        <div className="bg-muted/50 border-t px-6 md:px-10">
           <div className="flex min-h-16 flex-wrap items-center justify-between gap-4 py-4">
             {buyIncentives.map(({ label, href, icon: Icon }) => (
               <a

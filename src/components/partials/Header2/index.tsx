@@ -67,7 +67,7 @@ const Header2 = ({
             Civil 3D
           </div>
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-2 md:flex">
               <PhoneCall className="size-4" />
               <span className="leading-0">Contact Sales</span>
             </div>

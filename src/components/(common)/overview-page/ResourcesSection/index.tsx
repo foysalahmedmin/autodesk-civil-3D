@@ -51,7 +51,7 @@ const ResourcesSection = () => {
                 <img
                   src={resource.imageUrl}
                   alt={resource.title}
-                  className="h-60 w-full object-cover"
+                  className="aspect-video w-full object-cover"
                 />
               </div>
 
