@@ -27,11 +27,6 @@ const subMenuItems = [
     value: "capabilities-panel",
   },
   {
-    label: "Customer stories",
-    href: "#customer-stories-panel",
-    value: "customer-stories-panel",
-  },
-  {
     label: "Extensions",
     href: "#extensions-panel",
     value: "extensions-panel",
@@ -40,11 +35,6 @@ const subMenuItems = [
     label: "Resources",
     href: "#resources-panel",
     value: "resources-panel",
-  },
-  {
-    label: "Software bundle",
-    href: "#upsell-collection",
-    value: "upsell-collection",
   },
 ];
 
@@ -78,7 +68,7 @@ const Header2 = ({
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <PhoneCall />
+              <PhoneCall className="size-4" />
               <span className="leading-0">Contact Sales</span>
             </div>
             <button
