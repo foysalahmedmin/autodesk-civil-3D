@@ -36,7 +36,7 @@ const SocialMediaIcon: React.FC<{ platform: string; href: string }> = ({
   return (
     <a
       href={href}
-      className="text-muted-foreground hover:text-foreground hover:bg-accent rounded-full p-2 transition-colors"
+      className="text-muted-foreground hover:text-foreground hover:bg-accent/25 rounded-full p-2 transition-colors"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={platform}
@@ -144,7 +144,7 @@ const Footer = () => {
   return (
     <footer className="bg-background border-border border-t">
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container px-4 py-8 md:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Autodesk Section */}
           <div>
