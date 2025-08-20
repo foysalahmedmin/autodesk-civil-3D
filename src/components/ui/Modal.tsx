@@ -32,7 +32,7 @@ const modalBackdropVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-black/25",
+        default: "bg-black/50 backdrop-blur-xs",
         none: "",
       },
       size: {

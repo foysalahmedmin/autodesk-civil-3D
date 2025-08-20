@@ -112,7 +112,6 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
     document.body.appendChild(tempLink);
     tempLink.click();
     document.body.removeChild(tempLink);
-    alert("Download started automatically!");
   };
 
   // Handle download link click
