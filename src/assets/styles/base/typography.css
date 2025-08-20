@@ -2,6 +2,10 @@
   @apply border-border outline-ring/50;
 }
 
+html {
+  @apply scroll-p-26 scroll-smooth;
+}
+
 body {
   @apply bg-background text-foreground;
 }

@@ -56,7 +56,7 @@ const Header = () => {
       <header className="dark bg-background text-foreground flex h-16 items-center border-b px-6">
         <div className="container mx-auto flex h-full items-center justify-between">
           <div className="flex items-center gap-2">
-            <button className="lg:hidden">
+            <button onClick={() => setIsOpen(true)} className="lg:hidden">
               <Menu />
             </button>
             <div className="bg-muted-foreground w-[1px] self-stretch lg:hidden" />

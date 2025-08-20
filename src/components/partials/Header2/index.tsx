@@ -67,25 +67,25 @@ const Header2 = ({
       {/* Top header (logo + CTA) */}
       <div
         className={cn(
-          "h-0 overflow-hidden border-b transition-all duration-300",
+          "bg-card text-card-foreground h-0 overflow-hidden border-b transition-all duration-300",
           { "h-16": isTopShow },
         )}
       >
-        <div className="container flex items-center justify-between overflow-hidden">
+        <div className="container flex h-full items-center justify-between overflow-hidden">
           <div className="flex items-center gap-2">
             <img className="h-10" src="/civil-logo.png" alt="" />
             Civil 3D
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <PhoneCall />
               <span className="leading-0">Contact Sales</span>
             </div>
             <button
               onClick={() => setShowModal(true)}
-              className="border-foreground text-foreground flex h-10 cursor-pointer items-center gap-2 rounded border bg-transparent px-6 hover:outline-1 hover:outline-purple-900"
+              className="border-foreground text-foreground flex h-8 cursor-pointer items-center gap-2 rounded border bg-transparent px-6 text-xs hover:outline-1"
             >
-              <Download />
+              <Download className="size-4" />
               <span>Download</span>
             </button>
           </div>
@@ -95,7 +95,7 @@ const Header2 = ({
       {/* Navigation */}
       <nav className="bg-card text-card-foreground hidden border-b lg:block">
         <div className="container flex items-center">
-          <ul className="flex items-center">
+          <ul className="flex items-center overscroll-x-auto">
             {subMenuItems.map((item) => (
               <li key={item.value}>
                 <a
