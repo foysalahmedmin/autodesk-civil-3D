@@ -1,10 +1,18 @@
 import Header from "@/components/partials/Header";
+import Header2 from "@/components/partials/Header2";
 import { Badge } from "@/components/ui/Badge";
 import { Modal } from "@/components/ui/Modal";
 import { Tabs } from "@/components/ui/Tabs";
 import { cn } from "@/lib/utils";
-import { CheckCircle, Download } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  CheckCircle,
+  Download,
+  Info,
+  Lock,
+  RefreshCw,
+  ShieldCheck,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const plans = [
   {
@@ -27,6 +35,29 @@ const plans = [
   },
 ];
 
+export const buyIncentives = [
+  {
+    label: "Up to 30-day money back guarantee",
+    href: "/buying/how-to-buy#buying-frequently-asked-questions",
+    icon: RefreshCw,
+  },
+  {
+    label: "Lock in your price for 3 years",
+    href: "/buying/terms-payments",
+    icon: Lock,
+  },
+  {
+    label: "Buy with flexibility and security",
+    href: "/buying/how-to-buy#why-buy-with-autodesk",
+    icon: ShieldCheck,
+  },
+  {
+    label: "See more reasons to buy with Autodesk",
+    href: "/benefits/overview",
+    icon: Info,
+  },
+];
+
 const OverviewPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [productKey, setProductKey] = useState("");
@@ -34,8 +65,9 @@ const OverviewPage = () => {
   const [isKeyVerified, setIsKeyVerified] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  const [tab, setTab] = useState("Annual");
-  const selectedPlan = plans.find((plan) => plan.title === tab);
+  const [tab, setTab] = useState(0);
+  const [terms, setTerms] = useState("1-year");
+  const selectedPlan = plans[tab];
 
   const isValidKey = /^[a-zA-Z0-9]{4,6}$/.test(productKey);
   const validKeys = ["057K3"];
@@ -119,20 +151,38 @@ const OverviewPage = () => {
     }
   }, [productKey]);
 
+  const [heroHeight, setHeroHeight] = useState(0);
+  const heroRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (heroRef.current) {
+        setHeroHeight(heroRef.current.clientHeight);
+      }
+    };
+
+    updateHeight(); // run on mount
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
+
   return (
-    <main className="space-y-6">
+    <main>
       <Header />
-      <section className="dark py-16 md:py-24">
+      <section ref={heroRef} className="dark bg-background text-foreground">
         <div
           style={{ backgroundImage: "url('/background.png')" }}
-          className="container space-y-16 bg-center"
+          className="container space-y-8 bg-cover bg-center bg-no-repeat py-8 md:py-16"
         >
-          <div className="md:max-w-1/2">
+          <div className="space-y-4 md:max-w-1/2">
             <div className="flex items-center gap-2">
-              <img className="h-16" src="/civil-logo.png" alt="" />
+              <img className="h-10" src="/civil-logo.png" alt="" />
               Civil 3D
             </div>
-            <h3>
+            <h3 className="text-3xl font-black">
               Autodesk Civil 3D: Comprehensive detailed design and documentation
               <br />
               software for civil infrastructure
@@ -140,43 +190,48 @@ const OverviewPage = () => {
             <div>
               <button
                 onClick={() => setShowModal(true)}
-                className="border-foreground text-foreground flex h-8 items-center gap-2 rounded bg-transparent px-6 hover:outline-1 hover:outline-purple-900"
+                className="border-foreground text-foreground flex h-10 cursor-pointer items-center gap-2 rounded border bg-transparent px-6 hover:outline-1 hover:outline-purple-900"
               >
                 <Download />
                 <span>Download</span>
               </button>
               <Modal isOpen={showModal} setIsOpen={setShowModal}>
                 <Modal.Backdrop>
-                  <Modal.Content size="sm">
+                  <Modal.Content
+                    className="dark text-card-foreground bg-card"
+                    size="sm"
+                  >
                     <Modal.Header>
                       <Modal.Title>Download AutoCAD Civil 3D 2025</Modal.Title>
                       <Modal.Close />
                     </Modal.Header>
                     <Modal.Body>
-                      <div>
+                      <div className="dark text-card-foreground bg-card">
                         {!isKeyVerified ? (
-                          <div className="space-y-4">
-                            <label
-                              htmlFor="productKey"
-                              className="block text-sm font-bold"
-                            >
-                              Enter your product key
-                            </label>
-                            <input
-                              type="text"
-                              id="productKey"
-                              maxLength={6}
-                              placeholder="Enter (4 to 6) - digit product key"
-                              value={productKey}
-                              onChange={(e) => setProductKey(e.target.value)}
-                              className="bg-muted focus:border-foreground w-full border px-4 py-3 focus:outline-none"
-                              autoFocus
-                            />
+                          <div className="space-y-6">
+                            <div className="space-y-4">
+                              <label
+                                htmlFor="productKey"
+                                className="block text-sm font-bold"
+                              >
+                                Enter your product key
+                              </label>
+                              <input
+                                type="text"
+                                id="productKey"
+                                maxLength={6}
+                                placeholder="Enter (4 to 6) - digit product key"
+                                value={productKey}
+                                onChange={(e) => setProductKey(e.target.value)}
+                                className="bg-muted focus:border-foreground w-full border px-4 py-3 focus:outline-none"
+                                autoFocus
+                              />
+                            </div>
                             <button
                               onClick={handleSubmitKey}
                               disabled={!isValidKey}
                               className={cn(
-                                "border-foreground text-foreground flex h-8 items-center gap-2 rounded bg-transparent px-6 hover:outline-1",
+                                "border-foreground text-foreground flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded border bg-transparent px-6 hover:outline-1",
                                 {
                                   "outline-purple-900 hover:outline-purple-900":
                                     isValidKey,
@@ -185,7 +240,7 @@ const OverviewPage = () => {
                                 },
                               )}
                             >
-                              <span>Submit</span>
+                              <span>SUBMIT</span>
                             </button>
                             {showError && (
                               <div className="font-bold text-red-400">
@@ -229,49 +284,166 @@ const OverviewPage = () => {
                 </Modal.Backdrop>
               </Modal>
             </div>
+            <strong className="block">
+              Have questions about selecting or buying software?
+            </strong>
           </div>
-          <div className="bg-card/50 rounded-3xl border p-12 backdrop-blur-3xl md:py-16">
-            <div>
-              <h3>Plans Civil 3D</h3>
-              <div>
-                <Tabs
-                  value={tab}
-                  onValueChange={(value) => setTab(value as string)}
-                  className="space-y-4"
-                >
-                  <Tabs.List className="grid w-full md:grid-cols-3">
-                    {plans?.map((plan) => (
-                      <Tabs.Trigger key={plan.title} value={plan.title}>
-                        <div className="bg-background border-foreground space-y-4 rounded-2xl p-6 hover:border-purple-900">
-                          <h4 className="text-lg font-bold">{plan.title}</h4>
+          <div className="bg-muted/50 space-y-6 overflow-hidden rounded-xl border py-10 pb-0 backdrop-blur-xl">
+            <div className="px-10">
+              <div className="space-y-6">
+                <h3 className="text-3xl font-black">Plans Civil 3D</h3>
+                <div>
+                  <Tabs
+                    value={tab}
+                    onValueChange={(value) => setTab(value as number)}
+                    className="space-y-6"
+                  >
+                    <Tabs.List className="grid w-full gap-4 md:grid-cols-3">
+                      {plans?.map((plan, index) => (
+                        <Tabs.Trigger
+                          className={cn(
+                            "border-foreground/50 bg-background cursor-pointer rounded-xl border hover:border-purple-900",
+                            {
+                              "border-foreground hover:border-foreground outline-foreground outline-2":
+                                tab === index,
+                            },
+                          )}
+                          key={plan.title}
+                          value={index}
+                        >
+                          <div className="size-full space-y-4 p-6">
+                            <h4 className="text-lg font-bold">{plan.title}</h4>
+                            <div className="space-y-2">
+                              <h4 className="flex flex-wrap items-end gap-1 leading-none">
+                                <span className="text-lg leading-none font-bold">
+                                  ${plan.price}
+                                </span>
+                                /
+                                <span className="leading-none">
+                                  {plan?.billing}
+                                </span>
+                              </h4>
+                              {plan.description && (
+                                <p className="">{plan.description}</p>
+                              )}
+                            </div>
+                            {plan.badge && (
+                              <div className="flex items-center gap-1">
+                                <Badge className="bg-muted text-foreground rounded-full px-4 py-1 text-sm">
+                                  {plan.badge}
+                                </Badge>
+                              </div>
+                            )}
+                          </div>
+                        </Tabs.Trigger>
+                      ))}
+                    </Tabs.List>
+                    <hr />
+                    <Tabs.Content>
+                      <Tabs.Item value={0}>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-4">
+                            <p>Select Term</p>
+                            <label className="flex cursor-pointer items-center gap-2">
+                              <input
+                                className="accent-accent size-5"
+                                type="radio"
+                                name="terms"
+                                value="1-year"
+                                checked={terms === "1-year"}
+                                onChange={(e) => setTerms(e.target.value)}
+                              />
+                              <span>1 Year</span>
+                            </label>
+                            <label className="flex cursor-pointer items-center gap-2">
+                              <input
+                                className="accent-accent size-5 bg-transparent"
+                                type="radio"
+                                name="terms"
+                                value="3-year"
+                                checked={terms === "3-year"}
+                                onChange={(e) => setTerms(e.target.value)}
+                              />
+                              <span>3 Year</span>
+                            </label>
+                          </div>
+                          <div>
+                            {terms === "1-year" ? (
+                              <>
+                                <h4 className="flex flex-wrap items-end gap-1 leading-none">
+                                  <span className="text-xl leading-none font-black">
+                                    $2,870
+                                  </span>
+                                  /
+                                  <span className="leading-none">
+                                    year for 1 user
+                                  </span>
+                                </h4>
+                              </>
+                            ) : (
+                              <>
+                                <h4 className="flex flex-wrap items-end gap-1 leading-none">
+                                  <span className="text-xl leading-none font-black">
+                                    $8,610
+                                  </span>
+                                  /
+                                  <span className="leading-none">
+                                    3 years for 1 user
+                                  </span>
+                                </h4>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </Tabs.Item>
+                      <Tabs.Item value={1}>
+                        <div className="flex items-center justify-end">
                           <h4 className="flex flex-wrap items-end gap-1 leading-none">
-                            <span className="text-lg leading-none font-bold">
-                              ${plan.price}
+                            <span className="text-xl leading-none font-black">
+                              $360
                             </span>
                             /
                             <span className="leading-none">
-                              {plan?.billing}
+                              month for 1 user
                             </span>
                           </h4>
-                          {plan.description && (
-                            <p className="">{plan.description}</p>
-                          )}
-                          {plan.badge && (
-                            <div className="flex items-center gap-1">
-                              <Badge>{plan.badge}</Badge>
-                            </div>
-                          )}
                         </div>
-                      </Tabs.Trigger>
-                    ))}
-                  </Tabs.List>
-                  <hr />
-                </Tabs>
+                      </Tabs.Item>
+                      <Tabs.Item value={2}>
+                        <div className="flex items-center justify-end">
+                          <h4 className="flex flex-wrap items-end gap-1 leading-none">
+                            <span className="text-xl leading-none font-black">
+                              $300
+                            </span>
+                            /<span className="leading-none">100 tokens</span>
+                          </h4>
+                        </div>
+                      </Tabs.Item>
+                    </Tabs.Content>
+                  </Tabs>
+                </div>
+              </div>
+            </div>
+            <div className="bg-muted/50 border-t px-10">
+              <div className="flex min-h-16 flex-wrap items-center justify-between gap-4 py-4">
+                {buyIncentives.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    className="flex items-center gap-2 text-sm"
+                  >
+                    <Icon className="h-5 w-5" />
+                    <span>{label}</span>
+                  </a>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
+      <div>
+        <Header2 heroHeight={heroHeight} setShowModal={setShowModal} />
+      </div>
     </main>
   );
 };

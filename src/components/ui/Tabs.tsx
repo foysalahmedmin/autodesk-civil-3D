@@ -160,6 +160,7 @@ const TabsTrigger = ({
         }
       }}
       className={cn(
+        "flex flex-col",
         isActive && ["text-primary", "before:scale-x-100", activeClassName],
 
         // Disabled state
@@ -176,7 +177,10 @@ const TabsTrigger = ({
       {...props}
     >
       <span
-        className={cn("transition-all duration-200", isLoading && "opacity-50")}
+        className={cn(
+          "size-full flex-1 transition-all duration-200",
+          isLoading && "opacity-50",
+        )}
       >
         {children}
       </span>
