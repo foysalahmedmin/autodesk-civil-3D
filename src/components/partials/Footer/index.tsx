@@ -303,7 +303,7 @@ const Footer = () => {
               </a>
               <span>|</span>
               <span className="font-medium">
-                © 2025 Autodesk Inc. All rights reserved
+                © 2026 Autodesk Inc. All rights reserved
               </span>
             </div>
           </div>
